@@ -46,3 +46,21 @@ export function generateSecondaryColor(
   }%
   )`;
 }
+
+export function generateGradient(
+  input: string,
+  angle = 45,
+  options: ColorOptions = {},
+  secondaryOptions: ColorOptions = {}
+): string {
+  const mergedOptions: ColorOptions = { ...defaultColorOptions, ...options };
+  const mergedSecondaryOptions: ColorOptions = {
+    ...defaultColorOptions,
+    ...secondaryOptions,
+  };
+  return `linear-gradient(
+    ${angle}deg,
+    ${generateColor(input, mergedOptions)},
+    ${generateSecondaryColor(input, mergedSecondaryOptions)}
+  )`;
+}
