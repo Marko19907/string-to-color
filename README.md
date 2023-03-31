@@ -1,9 +1,14 @@
 # string-to-color
 
 [![npm version](https://img.shields.io/npm/v/@marko19907/string-to-color.svg)](https://www.npmjs.com/package/@marko19907/string-to-color)
-[![Build](https://github.com/Marko19907/string-to-color/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/Marko19907/string-to-color/actions/workflows/main.yml)
-[![Dev build](https://github.com/Marko19907/string-to-color/actions/workflows/main.yml/badge.svg?branch=dev)](https://github.com/Marko19907/string-to-color/actions/workflows/main.yml)
+[![npm downloads per week](https://badgen.net/npm/dw/@marko19907/string-to-color)](https://www.npmjs.com/package/@marko19907/string-to-color)
+[![minified size](https://badgen.net/bundlephobia/min/@marko19907/string-to-color?label=minified)](https://bundlephobia.com/result?p=@marko19907/string-to-color)
+[![gzip size](https://badgen.net/bundlephobia/minzip/@marko19907/string-to-color?label=gzipped)](https://bundlephobia.com/result?p=@marko19907/string-to-color)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+[![Build](https://github.com/Marko19907/string-to-color/actions/workflows/main.yml/badge.svg?branch=main&label=Build)](https://github.com/Marko19907/string-to-color/actions/workflows/main.yml)
+[![Dev build](https://github.com/Marko19907/string-to-color/actions/workflows/main.yml/badge.svg?branch=dev&label=Dev%20build)](https://github.com/Marko19907/string-to-color/actions/workflows/main.yml)
+
 
 string-to-color is a library that deterministically generates an HSL color based on a given string.
 
