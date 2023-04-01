@@ -109,6 +109,10 @@ return (
 }
 ```
 
+## Acknowledgments
+This repository is based on a template by Matt Pocock.
+The template can be found in this repository [mattpocock/pkg-demo](https://github.com/mattpocock/pkg-demo)
+
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details
 
