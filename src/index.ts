@@ -29,6 +29,8 @@ export const defaultColorOptions: ColorOptions = {
 /**
  * Generates a random color from the given string, saturation and lightness can be controlled.
  * Inspired by https://martin.ankerl.com/2009/12/09/how-to-create-random-colors-programmatically/
+ * @param input The input to generate the color from
+ * @param options The custom options to use for the color generation
  */
 export function generateColor(
   input: string,
@@ -46,7 +48,9 @@ export function generateColor(
 }
 
 /**
- * Same as generateColor() but with a different algorithm that produces a different color.
+ * Same as generateColor() but with a different default algorithm that produces a different color.
+ * @param input The input to generate the color from
+ * @param options The custom options to use for the color generation
  */
 export function generateSecondaryColor(
   input: string,
@@ -63,6 +67,13 @@ export function generateSecondaryColor(
   )`;
 }
 
+/**
+ * Generates a linear gradient from the given input.
+ * @param input The input to generate the gradient from
+ * @param angle The angle of the gradient
+ * @param options The custom options to use for the color generation of the primary color
+ * @param secondaryOptions The custom options to use for the color generation of the secondary color
+ */
 export function generateGradient(
   input: string,
   angle = 45,
