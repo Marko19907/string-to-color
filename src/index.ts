@@ -1,8 +1,20 @@
-import seedrandom from "seedrandom";
+import { Algo, Xor128, Xorwow } from "./generators";
+
+export {
+  Algo,
+  Alea,
+  Arc4,
+  Tychei,
+  Xor128,
+  Xor4096,
+  Xorshift7,
+  Xorwow,
+} from "./generators";
 
 const PHI = 1.618033988749895;
 
 export interface ColorOptions {
+  algorithm?: Algo;
   saturation?: number;
   lightness?: number;
   alpha?: number;
@@ -22,12 +34,14 @@ export function generateColor(
   input: string,
   options: ColorOptions = {}
 ): string {
-  const mergedOptions: ColorOptions = { ...defaultColorOptions, ...options };
+  const { alpha, lightness, saturation }: ColorOptions = {
+    ...defaultColorOptions,
+    ...options,
+  };
+  const algorithm = options.algorithm || Xor128;
   return `hsl(
-    ${Math.floor(((seedrandom.xor128(input)() + 1 / PHI) % 1) * 360)}
-    , ${mergedOptions.saturation}%, ${mergedOptions.lightness}%, ${
-    mergedOptions.alpha
-  }%
+    ${Math.floor(((algorithm(input) + 1 / PHI) % 1) * 360)}
+    , ${saturation}%, ${lightness}%, ${alpha}%
   )`;
 }
 
@@ -38,12 +52,14 @@ export function generateSecondaryColor(
   input: string,
   options: ColorOptions = {}
 ): string {
-  const mergedOptions: ColorOptions = { ...defaultColorOptions, ...options };
+  const { alpha, lightness, saturation }: ColorOptions = {
+    ...defaultColorOptions,
+    ...options,
+  };
+  const algorithm = options.algorithm || Xorwow;
   return `hsl(
-    ${Math.floor(((seedrandom.xorwow(input)() + 1 / PHI) % 1) * 360)}
-    , ${mergedOptions.saturation}%, ${mergedOptions.lightness}%, ${
-    mergedOptions.alpha
-  }%
+    ${Math.floor(((algorithm(input) + 1 / PHI) % 1) * 360)}
+    , ${saturation}%, ${lightness}%, ${alpha}%
   )`;
 }
 
