@@ -14,6 +14,7 @@ string-to-color is a library that deterministically generates an HSL color based
 
 It's useful for generating consistent colors for user avatars, boxes, and other visualizations where you need
 a color that is unique to a specific input value. 
+The library also supports tree shaking, allowing for more efficient bundling of your code.
 
 ## [Demo](https://marko19907.github.io/string-to-color-demo/)
 Check out the live demo of the library to see it in action!
