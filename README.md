@@ -134,6 +134,10 @@ return (
 ```
 
 ## Acknowledgments
+
+The PRNG algorithms used in this library are sourced from the [seedrandom library](https://github.com/davidbau/seedrandom#other-fast-prng-algorithms),
+and the ES module port is provided by the [esm-seedrandom library](https://github.com/shanewholloway/js-esm-seedrandom).
+
 This repository is based on a template by Matt Pocock.
 The template can be found in this repository [mattpocock/pkg-demo](https://github.com/mattpocock/pkg-demo)
 
