@@ -133,6 +133,29 @@ return (
 }
 ```
 
+## Performance
+
+Performance of the library depends on the chosen PRNG (Pseudo Random Number Generator) algorithm. 
+A range of algorithms with different performance characteristics are provided, and the user can choose the one that best suits their needs.
+Below is a table comparing the relative speed of each algorithm. 
+
+| Algorithm | Speed           |
+|-----------|-----------------|
+| Alea      | ★★★★★ Very Fast |
+| Arc4      | ★★★★★ Very Fast |
+| Tychei    | ★★★★☆ Fast      |
+| Xor128    | ★★★★★ Very Fast |
+| Xor4096   | ★★★★☆ Fast      |
+| Xorshift7 | ★★★☆☆ Medium    |
+| Xorwow    | ★★★★☆ Fast      |
+
+These are rough estimates, and actual performance may vary. 
+For more detailed performance data and comparisons of the PRNG algorithms, refer to the [seedrandom repository](https://github.com/davidbau/seedrandom#other-fast-prng-algorithms).
+
+When using the library in a React application, you can further improve performance by using the `useMemo()` hook to avoid unnecessary re-renders.
+See the ["Usage with React and useMemo()"](#usage-with-react-and-usememo) section in the README for an example.
+Other frameworks might offer a similar feature to React’s `useMemo()` hook.
+
 ## Acknowledgments
 
 The PRNG algorithms used in this library are sourced from the [seedrandom library](https://github.com/davidbau/seedrandom#other-fast-prng-algorithms),
