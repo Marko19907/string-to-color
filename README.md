@@ -92,6 +92,24 @@ const gradient = generateGradient(username, 90, options, secondaryOptions); // g
 
 If no options are provided, the default values of `angle: 45`, `saturation: 75`, `lightness: 50`, and `alpha: 100` are used for both colors of the gradient.
 
+### Using a Custom PRNG Algorithm
+
+If you'd like to customize the PRNG algorithm used to generate the colors, you can easily do so.
+
+```js
+import { Alea, generateColor } from "@marko19907/string-to-color";
+
+const username = "JohnDoe";
+
+// Pass the custom algorithm as an option
+const primaryColor = generateColor(username, { algorithm: Alea });
+```
+
+This example imports the `Alea` algorithm from the library, then passes it as an option to the `generateColor` function. 
+The library will use the custom algorithm to generate the color. 
+You can replace the `Alea` algorithm with any other algorithm from the library or even pass your own custom PRNG algorithm.
+
+
 ### Usage with React and `useMemo()`
 
 If you're using string-to-color in a React application, you can use the `useMemo()` hook to avoid unnecessary re-renders and improve performance.
