@@ -1,5 +1,12 @@
 # @marko19907/string-to-color
 
+## 0.0.2
+
+### Patch Changes
+
+- 4b996de: • Added tree shaking support to reduce bundle size
+  • Added the ability for users to customize the algorithm used to generate colors
+
 ## 0.0.1
 
 ### Patch Changes
