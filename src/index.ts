@@ -11,32 +11,94 @@ export {
   Xorwow,
 } from "./generators";
 
-const PHI = 1.618033988749895;
+type Only<T, U> = {
+  [P in keyof T]: T[P];
+} & {
+  [P in keyof U]?: never;
+};
 
-export interface ColorOptions {
+type Either<T, U> = Only<T, U> | Only<U, T>;
+
+type Enumerate<
+  N extends number,
+  Acc extends number[] = []
+> = Acc["length"] extends N
+  ? Acc[number]
+  : Enumerate<N, [...Acc, Acc["length"]]>;
+
+type IntRange<F extends number, T extends number> = Exclude<
+  Enumerate<T>,
+  Enumerate<F>
+>;
+
+type ColorRange = IntRange<0, 101>;
+
+type Saturation = Either<
+  {
+    /**
+     * Short form of the saturation property, range must be between 0 and 100, inclusive.
+     */
+    s?: ColorRange;
+  },
+  {
+    /**
+     * Long form of the saturation property, range must be between 0 and 100, inclusive.
+     */
+    saturation?: ColorRange;
+  }
+>;
+
+type Lightness = Either<
+  {
+    /**
+     * Short form of the lightness property, range must be between 0 and 100, inclusive.
+     */
+    l?: ColorRange;
+  },
+  {
+    /**
+     * Long form of the lightness property, range must be between 0 and 100, inclusive.
+     */
+    lightness?: ColorRange;
+  }
+>;
+
+type Alpha = Either<
+  {
+    /**
+     * Short form of the alpha property, range must be between 0 and 100, inclusive.
+     */
+    a?: ColorRange;
+  },
+  {
+    /**
+     * Long form of the alpha property, range must be between 0 and 100, inclusive.
+     */
+    alpha?: ColorRange;
+  }
+>;
+
+/**
+ * The options for the color generation.
+ * It is possible to use the short form of the options (s, l, a) or the long form (saturation, lightness, alpha),
+ * but not both at the same time. If both are present, the full property name takes precedence. Range must be between 0 and 100, inclusive.
+ */
+export type ColorOptions = {
+  /**
+   * The algorithm to use for the color generation.
+   */
   algorithm?: Algo;
-  saturation?: number;
-  lightness?: number;
-  alpha?: number;
-  /**
-   * Shorthand for saturation, full property name takes precedence if both are present.
-   */
-  s?: number;
-  /**
-   * Shorthand for lightness, full property name takes precedence if both are present.
-   */
-  l?: number;
-  /**
-   * Shorthand for alpha, full property name takes precedence if both are present.
-   */
-  a?: number;
-}
+} & Saturation &
+  Lightness &
+  Alpha;
 
 export const defaultColorOptions: ColorOptions = {
   saturation: 75,
   lightness: 50,
   alpha: 100,
 };
+
+const PHI = 1.618033988749895;
 
 /**
  * Generates a random color from the given string, saturation and lightness can be controlled.
