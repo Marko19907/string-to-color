@@ -19,32 +19,18 @@ type Only<T, U> = {
 
 type Either<T, U> = Only<T, U> | Only<U, T>;
 
-type Enumerate<
-  N extends number,
-  Acc extends number[] = []
-> = Acc["length"] extends N
-  ? Acc[number]
-  : Enumerate<N, [...Acc, Acc["length"]]>;
-
-type IntRange<F extends number, T extends number> = Exclude<
-  Enumerate<T>,
-  Enumerate<F>
->;
-
-type ColorRange = IntRange<0, 101>;
-
 type Saturation = Either<
   {
     /**
      * Short form of the saturation property, range must be between 0 and 100, inclusive.
      */
-    s?: ColorRange;
+    s?: number;
   },
   {
     /**
      * Long form of the saturation property, range must be between 0 and 100, inclusive.
      */
-    saturation?: ColorRange;
+    saturation?: number;
   }
 >;
 
@@ -53,13 +39,13 @@ type Lightness = Either<
     /**
      * Short form of the lightness property, range must be between 0 and 100, inclusive.
      */
-    l?: ColorRange;
+    l?: number;
   },
   {
     /**
      * Long form of the lightness property, range must be between 0 and 100, inclusive.
      */
-    lightness?: ColorRange;
+    lightness?: number;
   }
 >;
 
@@ -68,13 +54,13 @@ type Alpha = Either<
     /**
      * Short form of the alpha property, range must be between 0 and 100, inclusive.
      */
-    a?: ColorRange;
+    a?: number;
   },
   {
     /**
      * Long form of the alpha property, range must be between 0 and 100, inclusive.
      */
-    alpha?: ColorRange;
+    alpha?: number;
   }
 >;
 
