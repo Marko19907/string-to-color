@@ -18,6 +18,18 @@ export interface ColorOptions {
   saturation?: number;
   lightness?: number;
   alpha?: number;
+  /**
+   * Shorthand for saturation, full property name takes precedence if both are present.
+   */
+  s?: number;
+  /**
+   * Shorthand for lightness, full property name takes precedence if both are present.
+   */
+  l?: number;
+  /**
+   * Shorthand for alpha, full property name takes precedence if both are present.
+   */
+  a?: number;
 }
 
 export const defaultColorOptions: ColorOptions = {
@@ -36,10 +48,14 @@ export function generateColor(
   input: string,
   options: ColorOptions = {}
 ): string {
-  const { alpha, lightness, saturation }: ColorOptions = {
-    ...defaultColorOptions,
-    ...options,
-  };
+  const {
+    s,
+    l,
+    a,
+    saturation = s || defaultColorOptions.saturation,
+    lightness = l || defaultColorOptions.lightness,
+    alpha = a || defaultColorOptions.alpha,
+  } = options;
   const algorithm = options.algorithm || Xor128;
   return `hsl(
     ${Math.floor(((algorithm(input) + 1 / PHI) % 1) * 360)}
@@ -56,10 +72,14 @@ export function generateSecondaryColor(
   input: string,
   options: ColorOptions = {}
 ): string {
-  const { alpha, lightness, saturation }: ColorOptions = {
-    ...defaultColorOptions,
-    ...options,
-  };
+  const {
+    s,
+    l,
+    a,
+    saturation = s || defaultColorOptions.saturation,
+    lightness = l || defaultColorOptions.lightness,
+    alpha = a || defaultColorOptions.alpha,
+  } = options;
   const algorithm = options.algorithm || Xorwow;
   return `hsl(
     ${Math.floor(((algorithm(input) + 1 / PHI) % 1) * 360)}
@@ -80,14 +100,9 @@ export function generateGradient(
   options: ColorOptions = {},
   secondaryOptions: ColorOptions = {}
 ): string {
-  const mergedOptions: ColorOptions = { ...defaultColorOptions, ...options };
-  const mergedSecondaryOptions: ColorOptions = {
-    ...defaultColorOptions,
-    ...secondaryOptions,
-  };
   return `linear-gradient(
     ${angle}deg,
-    ${generateColor(input, mergedOptions)},
-    ${generateSecondaryColor(input, mergedSecondaryOptions)}
+    ${generateColor(input, options)},
+    ${generateSecondaryColor(input, secondaryOptions)}
   )`;
 }

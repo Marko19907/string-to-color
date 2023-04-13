@@ -63,6 +63,14 @@ It is also possible to just provide a subset of the options, and the rest will b
 const color = generateColor("abc", { saturation: 80 }); 
 ```
 
+Shorthand options are also supported.
+
+```js
+const color = generateColor("abc", { s: 80 }); 
+```
+
+**Note:** The full property names take precedence over the shorthand options if both are provided.
+
 One can also call the function without any custom options like this. The rest will be filled in with the default values.
 
 ```js
