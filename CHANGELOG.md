@@ -1,5 +1,11 @@
 # @marko19907/string-to-color
 
+## 0.0.3
+
+### Patch Changes
+
+- b6e8d49: Introduced the short property names
+
 ## 0.0.2
 
 ### Patch Changes
