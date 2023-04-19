@@ -3,7 +3,7 @@
   "author": "Marko19907",
   "description": "Generates visually appealing and configurable colors and gradients based on input",
   "license": "MIT",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",

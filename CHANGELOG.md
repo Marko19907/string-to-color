@@ -1,5 +1,11 @@
 # @marko19907/string-to-color
 
+## 0.0.4
+
+### Patch Changes
+
+- f309555: Added unit tests, no functionality changes
+
 ## 0.0.3
 
 ### Patch Changes
