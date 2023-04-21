@@ -1,5 +1,11 @@
 # @marko19907/string-to-color
 
+## 0.0.5
+
+### Patch Changes
+
+- f344a36: Fixed the Next.js and esm-seedrandom import issue, no functionality changes
+
 ## 0.0.4
 
 ### Patch Changes
