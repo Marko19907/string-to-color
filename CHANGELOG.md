@@ -1,5 +1,11 @@
 # @marko19907/string-to-color
 
+## 0.0.6
+
+### Patch Changes
+
+- 429cad2: Fixed an issue where passing the value 0 as the shorthand option would incorrectly use the default value instead of 0
+
 ## 0.0.5
 
 ### Patch Changes
