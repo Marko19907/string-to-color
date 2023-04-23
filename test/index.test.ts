@@ -11,6 +11,7 @@ import {
   Xorshift7,
   Xorwow,
 } from "../src";
+import type { ColorOptions } from "../src";
 
 const hslaRegex =
   /^hsl\(\s*(\d{1,3})\s*,\s*(\d{1,3})%\s*,\s*(\d{1,3})%\s*,\s*(\d{1,3})%\s*\)$/i;
@@ -97,19 +98,54 @@ describe("Returns a valid HSLA color string", async () => {
 });
 
 describe("Honors the options passed in", () => {
-  it("generateColor()", () => {
-    const color = generateColor("test", { s: 25, l: 50, a: 75 });
-    const [, h, s, l, a] = hslaRegex.exec(color) ?? [];
-    expect(s).toBe("25");
-    expect(l).toBe("50");
-    expect(a).toBe("75");
+  const testCases: ColorOptions[] = [
+    { saturation: 25, lightness: 50, alpha: 75 },
+    { saturation: 0, lightness: 0, alpha: 0 },
+    { saturation: 100, lightness: 100, alpha: 100 },
+  ];
+
+  testCases.forEach((testCase) => {
+    it("generateColor()", () => {
+      const color = generateColor("test", testCase);
+      const [, h, s, l, a] = hslaRegex.exec(color) ?? [];
+      expect(s).toBe(String(testCase.saturation));
+      expect(l).toBe(String(testCase.lightness));
+      expect(a).toBe(String(testCase.alpha));
+    });
+
+    it("generateSecondaryColor()", () => {
+      const color = generateSecondaryColor("test", testCase);
+      const [, h, s, l, a] = hslaRegex.exec(color) ?? [];
+      expect(s).toBe(String(testCase.saturation));
+      expect(l).toBe(String(testCase.lightness));
+      expect(a).toBe(String(testCase.alpha));
+    });
   });
-  it("generateSecondaryColor()", () => {
-    const color = generateSecondaryColor("test", { s: 25, l: 50, a: 75 });
-    const [, h, s, l, a] = hslaRegex.exec(color) ?? [];
-    expect(s).toBe("25");
-    expect(l).toBe("50");
-    expect(a).toBe("75");
+});
+
+describe("Honors the options passed in, short hand", () => {
+  const testCases: ColorOptions[] = [
+    { s: 25, l: 50, a: 75 },
+    { s: 0, l: 0, a: 0 },
+    { s: 100, l: 100, a: 100 },
+  ];
+
+  testCases.forEach((testCase) => {
+    it("generateColor()", () => {
+      const color = generateColor("test", testCase);
+      const [, h, s, l, a] = hslaRegex.exec(color) ?? [];
+      expect(s).toBe(String(testCase.s));
+      expect(l).toBe(String(testCase.l));
+      expect(a).toBe(String(testCase.a));
+    });
+
+    it("generateSecondaryColor()", () => {
+      const color = generateSecondaryColor("test", testCase);
+      const [, h, s, l, a] = hslaRegex.exec(color) ?? [];
+      expect(s).toBe(String(testCase.s));
+      expect(l).toBe(String(testCase.l));
+      expect(a).toBe(String(testCase.a));
+    });
   });
 });
 
