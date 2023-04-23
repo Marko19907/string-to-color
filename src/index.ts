@@ -100,9 +100,9 @@ export function generateColor(
     s,
     l,
     a,
-    saturation = s || defaultColorOptions.saturation,
-    lightness = l || defaultColorOptions.lightness,
-    alpha = a || defaultColorOptions.alpha,
+    saturation = s ?? defaultColorOptions.saturation,
+    lightness = l ?? defaultColorOptions.lightness,
+    alpha = a ?? defaultColorOptions.alpha,
   } = options;
   const algorithm = options.algorithm || Xor128;
   return `hsl(
@@ -124,9 +124,9 @@ export function generateSecondaryColor(
     s,
     l,
     a,
-    saturation = s || defaultColorOptions.saturation,
-    lightness = l || defaultColorOptions.lightness,
-    alpha = a || defaultColorOptions.alpha,
+    saturation = s ?? defaultColorOptions.saturation,
+    lightness = l ?? defaultColorOptions.lightness,
+    alpha = a ?? defaultColorOptions.alpha,
   } = options;
   const algorithm = options.algorithm || Xorwow;
   return `hsl(
