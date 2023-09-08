@@ -94,16 +94,9 @@ const PHI = 1.618033988749895;
  */
 export function generateColor(
   input: string,
-  options: ColorOptions = {}
+  options: ColorOptions = {},
 ): string {
-  const {
-    s,
-    l,
-    a,
-    saturation = s ?? defaultColorOptions.saturation,
-    lightness = l ?? defaultColorOptions.lightness,
-    alpha = a ?? defaultColorOptions.alpha,
-  } = options;
+  const { saturation, lightness, alpha } = getOptions(options);
   const algorithm = options.algorithm || Xor128;
   return `hsl(
     ${Math.floor(((algorithm(input) + 1 / PHI) % 1) * 360)}
@@ -118,16 +111,9 @@ export function generateColor(
  */
 export function generateSecondaryColor(
   input: string,
-  options: ColorOptions = {}
+  options: ColorOptions = {},
 ): string {
-  const {
-    s,
-    l,
-    a,
-    saturation = s ?? defaultColorOptions.saturation,
-    lightness = l ?? defaultColorOptions.lightness,
-    alpha = a ?? defaultColorOptions.alpha,
-  } = options;
+  const { saturation, lightness, alpha } = getOptions(options);
   const algorithm = options.algorithm || Xorwow;
   return `hsl(
     ${Math.floor(((algorithm(input) + 1 / PHI) % 1) * 360)}
@@ -146,11 +132,28 @@ export function generateGradient(
   input: string,
   angle = 45,
   options: ColorOptions = {},
-  secondaryOptions: ColorOptions = {}
+  secondaryOptions: ColorOptions = {},
 ): string {
   return `linear-gradient(
     ${angle}deg,
     ${generateColor(input, options)},
     ${generateSecondaryColor(input, secondaryOptions)}
   )`;
+}
+
+/**
+ * Extracts the saturation, lightness, and alpha values from the given options and fills in the missing values with the default values.
+ * @param options The options to extract the values from
+ * @returns An object containing the extracted saturation, lightness, and alpha values
+ */
+function getOptions(options: ColorOptions = {}) {
+  const {
+    s,
+    l,
+    a,
+    saturation = s ?? defaultColorOptions.saturation,
+    lightness = l ?? defaultColorOptions.lightness,
+    alpha = a ?? defaultColorOptions.alpha,
+  } = options;
+  return { saturation, lightness, alpha };
 }
