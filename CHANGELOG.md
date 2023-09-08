@@ -1,5 +1,11 @@
 # @marko19907/string-to-color
 
+## 0.0.7
+
+### Patch Changes
+
+- 296fc52: Updated the packages used, no functionality changes
+
 ## 0.0.6
 
 ### Patch Changes
