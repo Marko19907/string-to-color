@@ -54,7 +54,18 @@ const primaryColor = generateColor(username); // generates a primary color based
 const secondaryColor = generateSecondaryColor(username); // generates a secondary color based on the username
 ```
 
-Both functions accept an optional `ColorOptions` object that can be used to customize the
+There's an RGB version of the functions as well, `generateColorRGB()` and `generateSecondaryColorRGB()`, that generate RGB colors instead of HSL colors.
+
+```js
+import { generateColorRGB, generateSecondaryColorRGB } from "@marko19907/string-to-color";
+```
+
+Use the HSL functions if you need to generate a color, and use the RGB functions if you really need to generate a color in RGB format.
+The RGB functions convert the generated HSL color to RGB, so they are slightly slower than the HSL functions and might lose some precision in the conversion.
+
+#### Color Options
+
+All functions accept an optional `ColorOptions` object that can be used to customize the
 saturation, lightness, and alpha values of the generated color.
 
 ```js
