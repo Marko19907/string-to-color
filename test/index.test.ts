@@ -3,8 +3,10 @@ import {
   Alea,
   Arc4,
   generateColor,
+  generateColorRGB,
   generateGradient,
   generateSecondaryColor,
+  generateSecondaryColorRGB,
   Tychei,
   Xor128,
   Xor4096,
@@ -12,9 +14,72 @@ import {
   Xorwow,
 } from "../src";
 import type { ColorOptions } from "../src";
+import { hslToRgb } from "../src/color-conversion-algorithms";
 
 const hslaRegex =
   /^hsl\(\s*(\d{1,3})\s*,\s*(\d{1,3})%\s*,\s*(\d{1,3})%\s*,\s*(\d{1,3})%\s*\)$/i;
+const rgbaRegex =
+  /^rgba\((\d+(\.\d+)?),\s(\d+(\.\d+)?),\s(\d+(\.\d+)?),\s[01](\.\d+)?\)$/;
+
+describe("generateColorRgb()", () => {
+  it("should not return null", () => {
+    expect(generateColorRGB("test")).not.toBe(null);
+  });
+
+  it("should return a valid RGB color string", () => {
+    const color = generateColorRGB("test");
+    expect(rgbaRegex.test(color)).toBe(true);
+  });
+
+  it("should return the same color for the same input", () => {
+    const input = "test";
+    const color1 = generateColorRGB(input);
+    const color2 = generateColorRGB(input);
+    expect(color1).toBe(color2);
+  });
+
+  it("should produce different colors for different inputs", () => {
+    const color1 = generateColorRGB("test1");
+    const color2 = generateColorRGB("test2");
+    expect(color1).not.toBe(color2);
+  });
+
+  it("should produce different colors for different options", () => {
+    const color1 = generateColorRGB("test", { saturation: 50 });
+    const color2 = generateColorRGB("test", { saturation: 0 });
+    expect(color1).not.toBe(color2);
+  });
+});
+
+describe("generateSecondaryColorRgb()", () => {
+  it("should not return null", () => {
+    expect(generateSecondaryColorRGB("test")).not.toBe(null);
+  });
+
+  it("should return a valid RGB color string", () => {
+    const color = generateSecondaryColorRGB("test");
+    expect(rgbaRegex.test(color)).toBe(true);
+  });
+
+  it("should return the same color for the same input", () => {
+    const input = "test";
+    const color1 = generateSecondaryColorRGB(input);
+    const color2 = generateSecondaryColorRGB(input);
+    expect(color1).toBe(color2);
+  });
+
+  it("should produce different colors for different inputs", () => {
+    const color1 = generateSecondaryColorRGB("test1");
+    const color2 = generateSecondaryColorRGB("test2");
+    expect(color1).not.toBe(color2);
+  });
+
+  it("should produce different colors for different options", () => {
+    const color1 = generateSecondaryColorRGB("test", { saturation: 50 });
+    const color2 = generateSecondaryColorRGB("test", { saturation: 0 });
+    expect(color1).not.toBe(color2);
+  });
+});
 
 describe("Both generateColor() and generateSecondaryColor() should not return null", () => {
   it("generateColor()", () => {
@@ -37,12 +102,12 @@ describe("Same input should produce the same color", () => {
 describe("Same input and options should produce the same color", () => {
   it("generateColor()", () => {
     expect(generateColor("test", { s: 50 })).toBe(
-      generateColor("test", { s: 50 })
+      generateColor("test", { s: 50 }),
     );
   });
   it("generateSecondaryColor()", () => {
     expect(generateSecondaryColor("test", { s: 50 })).toBe(
-      generateSecondaryColor("test", { s: 50 })
+      generateSecondaryColor("test", { s: 50 }),
     );
   });
 });
@@ -53,7 +118,7 @@ describe("Different inputs should produce different colors", () => {
   });
   it("generateSecondaryColor()", () => {
     expect(generateSecondaryColor("test")).not.toBe(
-      generateSecondaryColor("test2")
+      generateSecondaryColor("test2"),
     );
   });
 });
@@ -61,12 +126,12 @@ describe("Different inputs should produce different colors", () => {
 describe("Different algorithms should produce different colors", () => {
   it("generateColor()", () => {
     expect(generateColor("test")).not.toBe(
-      generateColor("test", { algorithm: Xorwow })
+      generateColor("test", { algorithm: Xorwow }),
     );
   });
   it("generateSecondaryColor()", () => {
     expect(generateSecondaryColor("test")).not.toBe(
-      generateSecondaryColor("test", { algorithm: Xor128 })
+      generateSecondaryColor("test", { algorithm: Xor128 }),
     );
   });
 });
@@ -74,12 +139,12 @@ describe("Different algorithms should produce different colors", () => {
 describe("Different options should produce different colors", () => {
   it("generateColor()", () => {
     expect(generateColor("test")).not.toBe(
-      generateColor("test", { saturation: 50 })
+      generateColor("test", { saturation: 50 }),
     );
   });
   it("generateSecondaryColor()", () => {
     expect(generateSecondaryColor("test")).not.toBe(
-      generateSecondaryColor("test", { saturation: 50 })
+      generateSecondaryColor("test", { saturation: 50 }),
     );
   });
 });
@@ -175,5 +240,17 @@ describe("All algorithms work", () => {
     algorithms.forEach((algorithm) => {
       expect(generateSecondaryColor("test", { algorithm })).not.toBe(null);
     });
+  });
+});
+
+describe("Test hslToRgb functionality", () => {
+  it("Test the behavior of hslToRgb", () => {
+    let result;
+
+    result = hslToRgb(0.5, 0.6, 0.3);
+    expect(result).not.toBe(null);
+
+    result = hslToRgb(0.3, 0.4, 0.7);
+    expect(result).not.toBe(null);
   });
 });
