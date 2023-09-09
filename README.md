@@ -14,7 +14,10 @@ string-to-color is a library that deterministically generates an HSL color based
 
 It's useful for generating consistent colors for user avatars, boxes, and other visualizations where you need
 a color that is unique to a specific input value. 
-The library also supports tree shaking, allowing for more efficient bundling of your code.
+
+The generated colors are also customizable, allowing you to tweak the saturation, lightness, and alpha values of the generated color to suit your needs and match your design.
+
+Tree shaking is supported too, allowing for more efficient bundling of your code.
 
 ## [Demo](https://marko19907.github.io/string-to-color-demo/)
 Check out the live demo of the library to see it in action!
@@ -31,6 +34,10 @@ npm install @marko19907/string-to-color
 
 ```bash
 yarn add @marko19907/string-to-color
+```
+
+```bash
+pnpm add @marko19907/string-to-color
 ```
 
 ## Usage
