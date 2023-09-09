@@ -1,4 +1,5 @@
 import { Algo, Xor128, Xorwow } from "./generators";
+import { hslToRgb } from "./color-conversion-algorithms";
 
 export {
   Algo,
@@ -106,6 +107,23 @@ export function generateColor(
 }
 
 /**
+ * Generates a random color from the given string in the RGB format, same as {@link generateColor} but in the RGB format.
+ * @param input The input string to generate the color from
+ * @param options The custom options to use for the color generation
+ * @returns The generated color in the RGB format
+ */
+export function generateColorRGB(
+  input: string,
+  options: ColorOptions = {},
+): string {
+  const { saturation, lightness, alpha } = getOptions(options);
+  const algorithm = options.algorithm || Xor128;
+  const h = calculateHue(input, algorithm);
+  const [r, g, b] = hslToRgb(h, saturation! / 100, lightness! / 100);
+  return `rgba(${r}, ${g}, ${b}, ${alpha! / 100})`;
+}
+
+/**
  * Same as generateColor() but with a different default algorithm that produces a different color.
  * @param input The input to generate the color from
  * @param options The custom options to use for the color generation
@@ -121,6 +139,22 @@ export function generateSecondaryColor(
     ${Math.floor(h * 360)}
     , ${saturation}%, ${lightness}%, ${alpha}%
   )`;
+}
+
+/**
+ * Same as {@link generateColorRGB} but with a different default algorithm that produces a different color.
+ * @param input The input to generate the color from
+ * @param options The custom options to use for the color generation
+ */
+export function generateSecondaryColorRGB(
+  input: string,
+  options: ColorOptions = {},
+): string {
+  const { saturation, lightness, alpha } = getOptions(options);
+  const algorithm = options.algorithm || Xor128;
+  const h = calculateHue(input, algorithm);
+  const [r, g, b] = hslToRgb(h, saturation! / 100, lightness! / 100);
+  return `rgba(${r}, ${g}, ${b}, ${alpha! / 100})`;
 }
 
 /**
