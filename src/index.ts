@@ -98,8 +98,9 @@ export function generateColor(
 ): string {
   const { saturation, lightness, alpha } = getOptions(options);
   const algorithm = options.algorithm || Xor128;
+  const h = calculateHue(input, algorithm);
   return `hsl(
-    ${Math.floor(((algorithm(input) + 1 / PHI) % 1) * 360)}
+    ${Math.floor(h * 360)}
     , ${saturation}%, ${lightness}%, ${alpha}%
   )`;
 }
@@ -115,8 +116,9 @@ export function generateSecondaryColor(
 ): string {
   const { saturation, lightness, alpha } = getOptions(options);
   const algorithm = options.algorithm || Xorwow;
+  const h = calculateHue(input, algorithm);
   return `hsl(
-    ${Math.floor(((algorithm(input) + 1 / PHI) % 1) * 360)}
+    ${Math.floor(h * 360)}
     , ${saturation}%, ${lightness}%, ${alpha}%
   )`;
 }
@@ -156,4 +158,14 @@ function getOptions(options: ColorOptions = {}) {
     alpha = a ?? defaultColorOptions.alpha,
   } = options;
   return { saturation, lightness, alpha };
+}
+
+/**
+ * Calculates the hue for a given input string.
+ * @param input The input string to calculate the hue for
+ * @param algorithm The algorithm to use for the calculation
+ * @returns The calculated hue
+ */
+function calculateHue(input: string, algorithm: Algo): number {
+  return (algorithm(input) + 1 / PHI) % 1;
 }
