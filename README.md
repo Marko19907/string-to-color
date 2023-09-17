@@ -168,7 +168,7 @@ Below is a table comparing the relative speed of each algorithm.
 | Algorithm | Speed           |
 |-----------|-----------------|
 | Alea      | ★★★★★ Very Fast |
-| Arc4      | ★★★★★ Very Fast |
+| Arc4      | ★★☆☆☆ Slow      |
 | Tychei    | ★★★★☆ Fast      |
 | Xor128    | ★★★★★ Very Fast |
 | Xor4096   | ★★★★☆ Fast      |

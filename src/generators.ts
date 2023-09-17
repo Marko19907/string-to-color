@@ -20,7 +20,7 @@ export const Alea: Algo = (seed) => prng_alea(seed)();
 
 /**
  * The Arc4 (Alleged RC4) PRNG algorithm, based on a stream cipher.
- * It is very fast (★★★★★) and generates random numbers with good statistical properties but has been considered cryptographically insecure.
+ * It is slow (★★☆☆☆) and generates random numbers with good statistical properties but has been considered cryptographically insecure.
  * @param seed - The input seed string.
  * @returns The next random number in the sequence.
  */
