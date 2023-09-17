@@ -1,5 +1,11 @@
 # @marko19907/string-to-color
 
+## 0.1.0
+
+### Minor Changes
+
+- 713607f: Added RGB color generation functions and updated the documentation
+
 ## 0.0.7
 
 ### Patch Changes
