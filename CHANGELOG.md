@@ -1,5 +1,11 @@
 # @marko19907/string-to-color
 
+## 1.0.0
+
+### Major Changes
+
+- dfbdda2: The library is now considered complete, no functionality changes
+
 ## 0.1.0
 
 ### Minor Changes
