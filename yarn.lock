@@ -1090,10 +1090,10 @@ escape-string-regexp@^1.0.5:
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
   integrity sha512-vbRorB5FUQWvla16U8R/qgaFIya2qGzwDrNmCZuYKrbdSUMG6I1ZCGQRefkRVhuOkIGVne7BQ35DSfo1qvJqFg==
 
-esm-seedrandom@^3.0.5:
-  version "3.0.5"
-  resolved "https://registry.yarnpkg.com/esm-seedrandom/-/esm-seedrandom-3.0.5.tgz#2411adb5864e71c71613907df4cbe831f29fcd2e"
-  integrity sha512-pMAq0mFIr5JQ3Ihbng7EBLMJ+llMbaDKkiG44pqbSXS0NIZWtEANpOpxb5s6Q8Q2R562P26qMHPv8YtP/NHh9g==
+esm-seedrandom@^3.0.5-esm.2:
+  version "3.0.5-esm.2"
+  resolved "https://registry.yarnpkg.com/esm-seedrandom/-/esm-seedrandom-3.0.5-esm.2.tgz#88574237635f3192a0465b64449d3611b18385b4"
+  integrity sha512-K6/g/blFdwYWCvBJwbYQGDTlvP3ElnsXwIvbwLjwcP7grVtcqCC6VOPe47/z3gSfwCLkcWGeB8CffwMNYr35HQ==
 
 esprima@^4.0.0:
   version "4.0.1"
