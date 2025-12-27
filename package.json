@@ -3,7 +3,7 @@
   "author": "Marko19907",
   "description": "Generates visually appealing and configurable colors and gradients based on input",
   "license": "MIT",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -33,12 +33,12 @@
     "esm-seedrandom": "^3.0.5-esm.2"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.26.2",
-    "@vitest/coverage-v8": "^0.34.4",
-    "prettier": "^3.0.3",
-    "tsup": "^7.2.0",
-    "typescript": "^5.2.2",
-    "vitest": "^0.34.4"
+    "@changesets/cli": "^2.29.8",
+    "@vitest/coverage-v8": "^4.0.16",
+    "prettier": "^3.7.4",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.16"
   },
   "bugs": {
     "url": "https://github.com/Marko19907/string-to-color/issues"
