@@ -1,4 +1,4 @@
-# string-to-color
+# @marko19907/string-to-color
 
 [![npm version](https://img.shields.io/npm/v/@marko19907/string-to-color.svg)](https://www.npmjs.com/package/@marko19907/string-to-color)
 [![npm downloads per week](https://badgen.net/npm/dw/@marko19907/string-to-color)](https://www.npmjs.com/package/@marko19907/string-to-color)
@@ -6,18 +6,23 @@
 [![gzip size](https://badgen.net/bundlephobia/minzip/@marko19907/string-to-color?label=gzipped)](https://bundlephobia.com/result?p=@marko19907/string-to-color)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-[![Build](https://github.com/Marko19907/string-to-color/actions/workflows/main.yml/badge.svg?branch=main&label=Build)](https://github.com/Marko19907/string-to-color/actions/workflows/main.yml)
-[![Dev build](https://github.com/Marko19907/string-to-color/actions/workflows/main.yml/badge.svg?branch=dev&label=Dev%20build)](https://github.com/Marko19907/string-to-color/actions/workflows/main.yml)
+[![Build](https://github.com/Marko19907/string-to-color/actions/workflows/main.yml/badge.svg?label=Build)](https://github.com/Marko19907/string-to-color/actions/workflows/main.yml)
 
 
-string-to-color is a library that deterministically generates an HSL color based on a given string.
+`@marko19907/string-to-color` turns any string (id, name, email, tag…) into a **stable, good-looking color** — every time.
 
-It's useful for generating consistent colors for user avatars, boxes, and other visualizations where you need
-a color that is unique to a specific input value. 
+Most “string to color” solutions effectively **hash into RGB**, which *works*, but often produces colors that are either muddy, too dark, or just visually uneven across a list of labels.
+This library is **design-first**: it generates colors in **HSL** and uses the “golden-ratio” hue distribution (inspired by [Martin Ankerl’s post](https://martin.ankerl.com/2009/12/09/how-to-create-random-colors-programmatically/)) to keep outputs evenly spaced and **always** pleasant to the human eye.
+It results in colors that feel intentionally chosen and less “random”, while still being fully deterministic.
 
-The generated colors are also customizable, allowing you to tweak the saturation, lightness, and alpha values of the generated color to suit your needs and match your design.
+### Why use this over other “string to color” packages?
 
-Tree shaking is supported too, allowing for more efficient bundling of your code.
+- **Visually pleasing by default:** it consistently produces balanced, visually pleasing colors from any string
+- **Deterministic:** the same input always maps to the same color, perfect for avatars, tags, charts, labels, etc.
+- **Customizable:** tweak saturation, lightness, and alpha to fit your design system or light/dark mode needs
+- **Built-in gradients:** generate a matching secondary color and a ready-to-use CSS `linear-gradient(...)`
+- **HSL-first + RGB helpers:** generate HSL directly or request RGB via conversion when needed
+- **Tree-shakeable:** keeps your bundle size small by only including what you use
 
 ## [Demo](https://marko19907.github.io/string-to-color-demo/)
 Check out the live demo of the library to see it in action!
@@ -147,15 +152,15 @@ import { useMemo } from "react";
 import { generateColor } from "@marko19907/string-to-color";
 
 function Avatar({ user }) {
-const primaryColor = useMemo(() => {
-    return generateColor(user.id);
-}, [user]);
-
-return (
-    <div style={{ backgroundColor: primaryColor }}>
-        {user.name}
-    </div>
-);
+    const primaryColor = useMemo(() => {
+        return generateColor(user.id);
+    }, [user]);
+    
+    return (
+        <div style={{ backgroundColor: primaryColor }}>
+            {user.name}
+        </div>
+    );
 }
 ```
 
@@ -188,7 +193,7 @@ The PRNG algorithms used in this library are sourced from the [seedrandom librar
 and the ES module port is provided by the [esm-seedrandom library](https://github.com/shanewholloway/js-esm-seedrandom).
 
 This repository is based on a template by Matt Pocock.
-The template can be found in this repository [mattpocock/pkg-demo](https://github.com/mattpocock/pkg-demo)
+The template can be found in this repository [mattpocock/pkg-demo](https://github.com/mattpocock/pkg-demo) and the video walkthrough on how to work with this repo is [here](https://youtu.be/eh89VE3Mk5g).
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details
