@@ -1,5 +1,11 @@
 # @marko19907/string-to-color
 
+## 1.0.1
+
+### Patch Changes
+
+- 302d8b2: Update the packages, rewrite the README, and use NPM Trusted Publishing. No functionality changes
+
 ## 1.0.0
 
 ### Major Changes
