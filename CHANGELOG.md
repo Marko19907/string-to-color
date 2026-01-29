@@ -1,5 +1,11 @@
 # @marko19907/string-to-color
 
+## 1.0.2
+
+### Patch Changes
+
+- 0be0218: Correctly pin `esm-seedrandom` to the latest version
+
 ## 1.0.1
 
 ### Patch Changes
